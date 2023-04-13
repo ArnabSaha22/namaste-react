@@ -44,3 +44,10 @@
 2. We can create a script to run the project in package.json file in the "scripts" part, now to run the code we just type npm run <script tag>. (Only for "start" tag we can also write "npm start").
 3. JSX and React both are different. We can write React without JSX, it's just that JSX makes it easier. JSX is not HTML inside JS, 
     both are different. JSX is an HTML like or XML like syntax. JSX is a different syntax.
+4. JSX is not a valid JavaScript syntax, they only understand ECMA script, for browser to understand JSX, parcel does the job behind the scenes. It is transpiled before it goes to JS engine and then JS engine understands the code. Now Parcel doesn't do the transpiling itself, it gives the responsiblity to Babel(it's a package). Basically Babel's job is to convert JSX to React code.
+5. Behind the scenes the JSX is converted to React.createElement which then makes a JS object and is rendered in DOM as an HTML element.
+    JSX => React.createElement() => React.createElement - JS Object => rendered to an HTML Element. All these are done by Babel.
+    "class" attribute in HTML => "className" attribute in JSX.
+6. For mutiline JSX statements, wrap them under () so that Babel understands where JSX starts and ends. A JSX part in the code is a     React Element.
+7. React Components -> Class based Components(Old way) and Functional Components.
+8. For Functional components, they are just javascript functions that returns some JSX elemnt. Make sure to start the name in capital letters.

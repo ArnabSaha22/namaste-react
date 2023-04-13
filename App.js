@@ -1,3 +1,37 @@
+
+//*********Code for episode 2***********
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+const coreReact = React.createElement("h1", {id: "heading"}, "React element using core React");
+const jsxReact = <h1 id="heading"> React element using JSX</h1> //JSX is just a syntax whereas the React.createElement is an object
+                //JS engine won't understand the above code, they only understand ECMA script. Parcel does the job behind the scenes.
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(jsxReact)
+
+console.log(coreReact);
+console.log(jsxReact);
+
+//React Functional Component
+const ReactHeading = () =>{
+    return <h1>React Functional Component</h1>;
+}
+
+const ReactHeading2 = () => <h1>React Functional Component 2</h1>
+
+
+
+
+
+
+
+
+
+
+
+//*********Code for episode 1***********
+
 //import React from "react";      //Here both React and ReactDOM are being imported from the node modules
 //import ReactDOM from "react-dom/client";  //Previously they used to come from CDN Links
 /*
@@ -25,20 +59,6 @@ root.render(parent);
  * React Element is an object -> It becomes HTML that the browser understands
  */
 
-//Above code was for episode 1
 
 
-//*********Code for episode 2***********
 
-
-import React from "react";
-import ReactDOM from "react-dom/client";
-
-const coreReact = React.createElement("h1", {id: "heading"}, "React element using core React");
-const jsxReact = <h1 id="heading"> React element using JSX</h1> //JSX is just a syntax whereas the React.createElement is an object
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(coreReact)
-
-console.log(coreReact);
-console.log(jsxReact);
