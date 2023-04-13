@@ -8,7 +8,8 @@ const coreReact = React.createElement("h1", {id: "heading"}, "React element usin
 const jsxReact = <h1 id="heading"> React element using JSX</h1> //JSX is just a syntax whereas the React.createElement is an object
                 //JS engine won't understand the above code, they only understand ECMA script. Parcel does the job behind the scenes.
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(jsxReact)
+
+//root.render(jsxReact)   //Rendering a React Element.
 
 console.log(coreReact);
 console.log(jsxReact);
@@ -19,6 +20,8 @@ const ReactHeading = () =>{
 }
 
 const ReactHeading2 = () => <h1>React Functional Component 2</h1>
+
+root.render(<ReactHeading />)   //Rendering a React Component
 
 
 
