@@ -1,7 +1,64 @@
+//*********Code for episode 3***********
+/**
+ * Planning for the Foodspah app
+ * Header
+ *  - Home
+ *  - Logo
+ *  - Cart
+ *  - Profile
+ * Body
+ *  - Search Bar
+ *  - Restaurant Container
+ *  - Restaurant Card
+ * Footer
+ *  - Copyright
+ *  - About Us
+ *  - Contact Us
+ */
+
+import React from "react";
+import ReactDOM from "react-dom/client"
+
+const Header = () =>{
+    return (
+        <div className="header">
+            <div className="logo-container">
+                <img src="Food App Logo.jpeg" />
+            </div>
+            <div className="nav-items">
+                <ul>
+                    <li>Home</li>
+                    <li>About Us</li>
+                    <li>Contact us</li>
+                    <li>Cart</li>
+                </ul>
+            </div>
+        </div>
+    )
+}
+
+const AppLayout = () =>{
+    return (
+        <div className="app">
+        <Header />
+        </div>
+    )
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<AppLayout />)
+
+
+
+
+
+
+
+
 
 //*********Code for episode 2***********
 
-import React from "react";
+/** import React from "react";
 import ReactDOM from "react-dom/client";
 
 const coreReact = React.createElement("h1", {id: "heading"}, "React element using core React");
@@ -22,16 +79,7 @@ const ReactHeading = () =>{
 const ReactHeading2 = () => <h1>React Functional Component 2</h1>
 
 root.render(<ReactHeading />)   //Rendering a React Component
-
-
-
-
-
-
-
-
-
-
+ */
 
 //*********Code for episode 1***********
 

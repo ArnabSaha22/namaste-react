@@ -57,3 +57,5 @@
 #####  ############# ####################### ################################# ##############################################
 
 # Namaste React Episode 4#
+
+1. Before building any app make sure to plan it first properly and then start coding.
