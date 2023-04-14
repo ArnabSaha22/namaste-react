@@ -50,7 +50,7 @@
     "class" attribute in HTML => "className" attribute in JSX. Inside a JSX we can run any JavaScript expression, function inside a {}.
 6. For mutiline JSX statements, wrap them under () so that Babel understands where JSX starts and ends. A JSX part in the code is a     React Element. React code is readable because of JSX. 
 7. React Components -> Class based Components(Old way) and Functional Components. Component Composition -> Composing or adding one component into other.
-8. For Functional components, they are just javascript functions that returns some JSX elemnt. Make sure to start the name in capital letters.
+8. For Functional components, they are just javascript functions that returns some JSX elemnt. Make sure to start the function name in capital letters.
 9. A React element is a normal JavaScript variable, so to add that in a React functional component or to add that in another React element we just enclose it inside {}. Now to add a React functional component in another element or a component we just enclose it inside < Component Name />
 10. Whatever data comes inside {} JSX won't blindly run it, it will sanitize and see if the data is ok to be processed. JSX Expression must have only one parent element. We can use React.Fragement that is used as an empty tag to wrap up the entire JSX. We can use <> </> in place of React.Fragement. Can we use multiple roots? Can we use a React.Fragement inside another React.Fragement ?
 
@@ -59,3 +59,8 @@
 # Namaste React Episode 4#
 
 1. Before building any app make sure to plan it first properly and then start coding.
+2. React Components are just like JavaScript functions, we can reuse them repeatedly.
+3. To add inline css in react component(within the HTML tags) you need to give them as JS objects {}.
+4. React props -> also known as properties. Just like React Functional Components are javascript functions, similarly React props are the arguments of the function. Passing props to a component => passing arguments to a function. Props are just JS objects that wraps all the details. When we have to dynamically pass some data into a component, we pass it as a prop.
+5. Config driven UI -> Managing the data how it looks on an UI using data or using configs that comes from the backend.
+6. While using map functions in react make sure to use "key" paramter, and in that never use indexes.
