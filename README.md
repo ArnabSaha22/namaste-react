@@ -40,6 +40,7 @@
 #####  ############# ####################### ################################# ##############################################
 
 # Namaste React Episode 3#
+
 1. npx parcel <source file name> -> means we are executing an NPM package "parcel" and we give the source file.
 2. We can create a script to run the project in package.json file in the "scripts" part, now to run the code we just type npm run <script tag>. (Only for "start" tag we can also write "npm start").
 3. JSX and React both are different. We can write React without JSX, it's just that JSX makes it easier. JSX is not HTML inside JS, 
@@ -64,3 +65,32 @@
 4. React props -> also known as properties. Just like React Functional Components are javascript functions, similarly React props are the arguments of the function. Passing props to a component => passing arguments to a function. Props are just JS objects that wraps all the details. When we have to dynamically pass some data into a component, we pass it as a prop.
 5. Config driven UI -> Managing the data how it looks on an UI using data or using configs that comes from the backend.
 6. While using map functions in react make sure to use "key" paramter, and in that never use indexes.
+
+#####  ############# ####################### ################################# ##############################################
+
+# Namaste React Episode 5#
+1. The best industry practice is to make seperate files for seperate components and keep all the source code in the "src" folder.
+    In that folder there will be a components folder. You can use Js as well as Jsx extenstion, it doesn't matter much.
+2. Never keep the hard coded data or the hard coded urls in the component files, make sure you keep them in a seperate folder (utils folder) and in a seperate file(say config.js or constant.js). Since these js files are not a component so the name starts with small letters. All the constant variables should be written in full uppercase.
+3. There are 2 different types of import and export. 
+    a) Normal export/import => export default <function/variable name> => when we have to export only one file, we cannot write this command twice. While importing these this we can just mention the name. Example:- import CDN_URL from "../Utils/constant";
+    b) Named export/import => export const <function/variable name> => here we mention export at the time of declaring the variable, so we can export multipe things at a time. While importing this named export make sure to mention them inside {}. 
+    Example:- import {CDN_URL} from "../Utils/constant";
+    We can combine default and named exports in a single file.
+4. All these React and other frameworks makes sure that the data layer and the UI layer are in sync, they help in faster DOM manipulation. React makes the DOM operations superfast and efficient.
+5. A React HOOK is a normal JS utility function that is prebuilt and is given to us by React, only thing is these functions have some logic written behind the scenes. We need to use named import command to import hooks in our program.
+    a) useState() hooks -> it is used to create state variables and maintains the state of our component. The scope of the local state variable is inside the component. Whenever a state variable updates React re-renders the component
+    b) useEffet() hooks ->
+6. React uses "Reconciliation Algorithm" which is also known as "React fiber"(came up in React version 16). A DOM stands for Document Object Model where Document is the HTML document, Object are the HTML Tags like <h1>, <h2>, <div>.. and the Model is the document structure where we have the HTML tags in the chronological order. React Fiber study material -> https://github.com/acdlite/react-fiber-architecture
+7. Virtual DOM -> It is the representation of the actual DOM in the form of a JS object. So there will be an object of existing DOM, once we make any change there is a new object is created, react finds out the difference between these 2 objects and then it actually updates the DOM. React does efficient DOM manipulation and that's why it's fast.
+    Example:- A real DOM          A Virtual DOM
+            <head>                If you do "console.log(<Body />)" it prints a nested object in the console, that is the Virtual DOM.
+                <body>
+                    <div>
+                    </div>
+                </body>
+            </head>
+8. Diff Algorithm -> It compares and finds the difference between 2 virtual DOMs, updates the actual DOM accordingly on every render cycle. That's how React becomes faster because finding out the difference between two HTML code is tuff but finding out the difference between 2 objects is easier. React doesn't touch the actual DOM much and that's another reason why React is so fast.
+9. Whenever there is a change in state variable React will immediately find out the difference between the Virtual DOM and it will re-render/update our component and update the actual DOM. 
+10. Incremental rendering -> The ability to split rendering work into chunks and spread it out over multiple frames.
+ 
