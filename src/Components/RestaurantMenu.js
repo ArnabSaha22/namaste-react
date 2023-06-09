@@ -4,16 +4,23 @@ import { CDN_URL } from "../Utils/constant";
 import { IMG_CDN_URL } from "../Utils/constant";
 import Shimmer from "./Shimmer";
 import useRestaurant from "../Utils/useRestaurant";
+import { addItem, clearCart, removeItem } from "../Utils/cartSlice";
+import { useDispatch } from "react-redux";
 
 const RestaurantMenu = () => {
   const { id } = useParams();
   const [restaurant, menu] = useRestaurant(id);
+  const dispatch = useDispatch();
+
+  const addFoodItem = (item) => {
+    dispatch(addItem(item));
+  };
 
   return !restaurant ? (
     <Shimmer />
   ) : (
-    <>
-      <div className="menu">
+    <div className="flex">
+      <div>
         <h1> Restaurant id: {id}</h1>
         <h2>{restaurant?.name}</h2>
         <img src={IMG_CDN_URL + restaurant.cloudinaryImageId} />
@@ -22,15 +29,23 @@ const RestaurantMenu = () => {
         <h3> {restaurant.avgRating} stars </h3>
         <h3> {restaurant.costForTwoMessage} </h3>
       </div>
-      <div>
+      <div className="p-5">
         <h1>Menu</h1>
         <ul>
           {Object.values(menu).map((items) => (
-            <li key={items.card.info.id}>{items.card.info.name}</li>
+            <li key={items.card.info.id}>
+              {items.card.info.name} -{" "}
+              <button
+                className="p-1 bg-green-200"
+                onClick={() => addFoodItem(items.card.info)}
+              >
+                Add Item
+              </button>
+            </li>
           ))}
         </ul>
       </div>
-    </>
+    </div>
   );
 };
 

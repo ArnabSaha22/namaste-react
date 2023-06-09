@@ -28,7 +28,9 @@ import { Footer } from "./Components/Footer";
 import RestaurantMenu from "./Components/RestaurantMenu";
 import Shimmer from "./Components/Shimmer";
 import userContext from "./Utils/userContext";
-
+import store from "./Utils/store";
+import { Provider } from "react-redux";
+import Cart from "./Components/Cart";
 //Chunking
 //Code Splitting
 //Dynamic Bundling
@@ -45,15 +47,17 @@ const About = lazy(() => import("./Components/About"));
 const AppLayout = () => {
   const [user1, setUser1] = useState({
     name: "Arnab 2",
-    email: "email2"
-  })
+    email: "email2",
+  });
 
   return (
-    <userContext.Provider value={{user : user1, setUser: setUser1 }}>
-      <Header />
-      <Outlet />
-      <Footer />
+    <Provider store={store}>
+      <userContext.Provider value={{ user: user1, setUser: setUser1 }}>
+        <Header />
+        <Outlet />
+        <Footer />
       </userContext.Provider>
+    </Provider>
   );
 };
 
@@ -90,6 +94,10 @@ const appRouter = createBrowserRouter([
             <Instamart />
           </Suspense>
         ),
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },

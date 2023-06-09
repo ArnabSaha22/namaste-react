@@ -190,4 +190,44 @@
 
 1. Redux is also like context where we can have a centralised storage of data, but the difference is it is used only in Large Scale Applications. For small scale applications using context is enough.
 2. Redux store is like a big object which have different sections and those are small pieces and all the components in the app will be able to access this store. On the other hand, state variable is restricted to that particular component and props help in passing data between the components.
-3. Redux and context helps in accessig data globally, only difference is we can have multiple context but only one redux store.
+3. Redux and context helps in accessig data globally, only difference is we can have multiple context but only one redux store. Redux and React are completely different and should not be combined together.
+4. We create logical seperation into our store => slices of our store(Ex:- User slice, authentication slice, theme slice, cart slice)
+    Basically a slice is a small portion of our store, so all these slices are small parts of our store.
+5. In Redux components cannot directly update the store, instead they have to "Dispatch an Action". The action will call a normal JS function and this function will be modifying the cart(This function is called as a Reducer). In case of large applications we don't want random components to modify our store so that is why we make changes via "Action object" so that we can keep a track of each and everything.
+ * So ==> we click a button in a React component ==> it dispatches an action ==> it calls a Reducer function ==> it updates the slice of our redux store. * [This is to write in the Redux store]
+6. To read the cart in redux store we need to call the "Selector" and this selector will give us the information from the cart that will update the React component. [This is to read from the Redux store] The selector is a hook (useSelector) at the end of the day and which again means thats a JS function. When we use a selector it's also known as "Subscribing to the store" which means reading from the store.
+It means that it is sync with the store so whenever the store modifies it will automatically modify the react component and the UI.
+7. We install 2 libraries to have the redux in our app.
+    i) npm i @reduxjs/toolkit  ==> This is the core of Redux.
+    ii) npm i react-redux  ==> This is the bridge between React and Redux.
+8. We need to give a provider to provide the store to the React application, we can provide the store to the entire app or some selective components based on our requirement.
+9. The Reducer function takes in 2 things -> the initial state and the action payload(This is the place where we will get the items to be added to the cart or "The data which is comming in"). These functions take a state and directly modify it, they don't return anything.
+10. 
+/**
+ * Steps in configuring a redux store:-
+ * Create a store => configureStore API from "@reduxjs/toolkit
+ *
+ * Provide the store to the app => Provider API from "react-redux" and used the key "store" and gave access of the store to the app.
+ *
+ * created a Slice using createSlice API from "@reduxjs/toolkit
+ * In create slice we need the below things in the form of an object:-
+ *      - name :
+ *      - Initial State :
+ *          - Items(array) :
+ *      - Reducers : {(Its an object having the below things)
+ *          - Action Name : Reducer function(Which takes in initial state and action payload) =>{ This function won't return anything }
+ *                  }
+ *        Export the actions as below
+ *          export const {<Action names>} : <Slice Name>.actions
+ *
+ *        Export the reducers BUT as a "<Slice Name>.reducer" format (Here it will combine all of them to a single reducer)
+ *
+ *
+ *  Now we put the slice in store in the below format in reducer object. Here all the slice created will be added here.
+ *       reducer : {
+ *                   <Name> : <Slice Name>
+ *                  }
+ */
+
+11. Using useSelector if we subscribe to the entire store then everytime my store changes it will re-render the component, which is a very bad performance issue. Instead we subscribe to the "items in that particular slice of the store" for best performance.
+12. Read about => Redux documentation, thunks, middleware

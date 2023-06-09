@@ -4,11 +4,16 @@ import { useState, useContext } from "react";
 import logo from "../../Images/applogo2.png";
 import { Link } from "react-router-dom";
 import userContext from "../Utils/userContext";
+import { useSelector } from "react-redux";
 
 export const Header = () => {
   //Named export
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const {user} = useContext(userContext)
+  const { user } = useContext(userContext);
+
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
+
   const loggedInUser = () => {
     return true;
   };
@@ -19,11 +24,21 @@ export const Header = () => {
       </div>
       <div className="nav-items">
         <ul className="flex py-10">
-          <li className="px-3"><Link to="/">Home</Link></li>
-          <li className="px-3"><Link to="/about">About Us</Link></li>
-          <li className="px-3"><Link to="/Contact">Contact us</Link></li>
-          <li className="px-3"><Link to="/instamart">Instamart</Link></li>
-          <li className="px-3"f>Cart</li>
+          <li className="px-3">
+            <Link to="/">Home</Link>
+          </li>
+          <li className="px-3">
+            <Link to="/about">About Us</Link>
+          </li>
+          <li className="px-3">
+            <Link to="/Contact">Contact us</Link>
+          </li>
+          <li className="px-3">
+            <Link to="/instamart">Instamart</Link>
+          </li>
+          <li className="px-3">
+            <Link to="/cart">Cart - {cartItems.length} items </Link>
+          </li>
           <h6 className="p-10 font-bold text-red-50">{user.name}</h6>
           <h6 className="p-10 font-bold text-red-50">{user.email}</h6>
           {isLoggedIn ? (
