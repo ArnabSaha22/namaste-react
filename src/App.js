@@ -17,23 +17,86 @@
  *  - Contact Us
  */
 
-import React from "react";
-import ReactDOM from "react-dom/client";
-import {Header} from "./Components/Header";  //Named import
-import Body from "./Components/Body";   //Normal import
+import React, { lazy, Suspense, useState } from "react";
+import ReactDOM from "react-dom";
+import { Header } from "./Components/Header"; //Named import
+import Body from "./Components/Body"; //Normal import
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import Error from "./Components/Error";
+import ContactUs from "./Components/ContactUs";
+import { Footer } from "./Components/Footer";
+import RestaurantMenu from "./Components/RestaurantMenu";
+import Shimmer from "./Components/Shimmer";
+import userContext from "./Utils/userContext";
 
+//Chunking
+//Code Splitting
+//Dynamic Bundling
+//Lazy Loading
+//On Demand Loading
+//Dynamic Import
+
+const Instamart = lazy(
+  () => import("./Components/Instamart") //This is called Dynamic Import for lazy loading
+);
+
+const About = lazy(() => import("./Components/About"));
 
 const AppLayout = () => {
+  const [user1, setUser1] = useState({
+    name: "Arnab 2",
+    email: "email2"
+  })
+
   return (
-    <div className="app">
+    <userContext.Provider value={{user : user1, setUser: setUser1 }}>
       <Header />
-      <Body />
-    </div>
+      <Outlet />
+      <Footer />
+      </userContext.Provider>
   );
 };
 
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        path: "/About",
+        element: (
+          <Suspense fallback={<h1>Loading.......</h1>}>
+            <About />
+          </Suspense>
+        ),
+      },
+      {
+        path: "",
+        element: <Body />,
+      },
+      {
+        path: "/Contact",
+        element: <ContactUs />,
+      },
+      {
+        path: "/restaurant/:id",
+        element: <RestaurantMenu />,
+      },
+      {
+        path: "/instamart",
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <Instamart />
+          </Suspense>
+        ),
+      },
+    ],
+  },
+]);
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppLayout />);
+root.render(<RouterProvider router={appRouter} />); //Now the root will render according to the given configuration in RouterProvider
 
 //*********Code for episode 2***********
 
