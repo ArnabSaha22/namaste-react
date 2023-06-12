@@ -179,9 +179,10 @@
 1. If there is a component and we want to use a local variable within the component that's called a "State" and to pass data from one component to the other we use props. Props are local state for the parent.
 2. Prop  Drilling -> Passing down of props down the component tree. We cannot change the state of another sibbling from the same component. In such cases we give control of the state of all the sibblings to the parent, this is called "Lifting the state up".
 3. Redux store, React context are a shared store for the entire app from where the state variables can be used across multiple components without undergoing prop drilling. Basically we need a piece of data to be accessible anywhere in our app.
-4. createContext() is a function that takes data which will be accessed all across our application. Props and other things are tied to a component which is not the case with React Context. In context.provider we can overide the default value with a state variable that can be modified. I can modify the context for a smaller portion of my app. If any component is outside the context.provider that will have the default value, only the ones inside the provider will have the updated value. The major advantage of context is "Prop Drilling".
+4. createContext() is a function that takes data which will be accessed all across our application. Props and other things are tied to a component which is not the case with React Context. In context.provider we can overide the default value with a state variable (using a prop called "value") that can be modified. It can modify the context for a smaller portion of my app. If any component is outside the context.provider that will have the default value, only the ones inside the provider will have the updated value. The major advantage of context is "Prop Drilling".
 5. How to manage more than 1 context? Can a context come inside another context? Can we have multiple nested context?
-6. Any component in our app can access the "Context" and any component can modify this context in our app.
+6. Any component in our app can access the "Context" and any component can modify this context in our app. The best thing about Context is that it is not tied to any component, it stays independent outside the app. Context is like a "useState" for the entire application.
+In class based components we use <Context.Consumer></Context.Consumer> to access the context.
 
 
 #####  ############# ####################### ################################# ##############################################

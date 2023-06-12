@@ -3,9 +3,12 @@ import { CDN_URL } from "../Utils/constant";
 import { useContext } from "react";
 import userContext from "../Utils/userContext";
 
+
 const FoodItems = ({ resData }) => {
-  const { name, price, category, imageId } = resData?.data;
+  console.log(resData)
+  const { name, price, category, imageId } = resData;
   const { user } = useContext(userContext);
+  
 
   //const {resData} = props;
   //We can also desctructure props object here as {resName, cuisines, ratings, arrivalTime, image}
@@ -17,7 +20,7 @@ const FoodItems = ({ resData }) => {
         src={CDN_URL + imageId}
       />
       <h2 className="font-bold text-2xl"> {name} </h2>
-      <h4> {price} </h4>
+      <h4> Rs. {price/100} </h4>
       <h5> {category}</h5>
     </div>
   );

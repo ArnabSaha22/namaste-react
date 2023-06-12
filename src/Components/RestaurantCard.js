@@ -4,6 +4,7 @@ import { useContext } from "react";
 import userContext from "../Utils/userContext";
 
 const RestaurantCard = ({ resData }) => {
+  //console.log(resData)
   const { name, cuisines, avgRating, costForTwo, minDeliveryTime } =
     resData?.data;
   const { user } = useContext(userContext);

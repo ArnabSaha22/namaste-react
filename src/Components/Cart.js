@@ -22,7 +22,7 @@ const Cart = () => {
       </button>
       <div className="flex">
         {cartItems.map((items) => (
-          <FoodItems key={items.id} {...items} />
+          <FoodItems key={items.id} resData={items} />
         ))}
       </div>
     </div>
