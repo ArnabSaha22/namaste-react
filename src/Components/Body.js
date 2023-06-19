@@ -1,8 +1,8 @@
 import React from "react"; //Normal import
 import RestaurantCard from "./RestaurantCard";
-import resList from "../Utils/mockData";
+//import resList from "../Utils/mockData";
 import { useState, useEffect, useContext } from "react"; //named import
-import resList from "../Utils/mockData";
+//import resList from "../Utils/mockData";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import { filterData } from "../Utils/Helper";
@@ -85,9 +85,10 @@ const Body = () => {
 
   async function getRestaurant() {
     const data = await fetch(
+      //Returns a promise with a readable stream.
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=23.831457&lng=91.2867777&page_type=DESKTOP_WEB_LISTING"
     );
-    const json = await data.json();
+    const json = await data.json(); //Converts the readable stream to JSON and returns another promise
     console.log(json);
     setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
     setListOfRestaurants(json?.data?.cards[2]?.data?.data?.cards);
@@ -102,11 +103,13 @@ const Body = () => {
           type="text"
           className="focus:bg-green-100 p-2 m-2"
           placeholder="Search"
+          data-testid="search-input"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
         <button
           className="p-3 m-4 bg-purple-900 hover:bg-slate-500 text-white rounded-md"
+          data-testid="search-btn"
           onClick={() => {
             //searchClick == "false"  ? setSearchClick("true") : setSearchClick("false");
             const data = filterData(searchText, allRestaurants);
@@ -149,7 +152,7 @@ const Body = () => {
           Top Rated Restaurants
         </button>
       </div>
-      <div className="flex flex-wrap bg-white">
+      <div className="flex flex-wrap bg-white" data-testid="res-list">
         {listOfRestaurants.map((restaurant) => {
           return (
             <Link to={"/restaurant/" + restaurant.data.id}>

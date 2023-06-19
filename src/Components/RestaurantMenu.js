@@ -31,19 +31,22 @@ const RestaurantMenu = () => {
       </div>
       <div className="p-5">
         <h1>Menu</h1>
-        <ul>
-          {Object.values(menu).map((items) => (
-            <li key={items.card.info.id}>
-              {items.card.info.name} -{" "}
-              <button
-                className="p-1 bg-green-200"
-                onClick={() => addFoodItem(items.card.info)}
-              >
-                Add Item
-              </button>
-            </li>
-          ))}
-        </ul>
+        <div data-testid="menu">
+          <ul>
+            {Object.values(menu).map((items) => (
+              <li key={items.card.info.id}>
+                {items.card.info.name} -{" "}
+                <button
+                  data-testid="addBtn"
+                  className="p-1 bg-green-200"
+                  onClick={() => addFoodItem(items.card.info)}
+                >
+                  Add Item
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

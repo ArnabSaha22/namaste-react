@@ -232,3 +232,85 @@ It means that it is sync with the store so whenever the store modifies it will a
 
 11. Using useSelector if we subscribe to the entire store then everytime my store changes it will re-render the component, which is a very bad performance issue. Instead we subscribe to the "items in that particular slice of the store" for best performance.
 12. Read about => Redux documentation, thunks, middleware
+
+
+#####  ############# ####################### ################################# ##############################################
+
+# Namaste React Episode 13#
+
+1. Reason to do testing in our app ==> There are lot of developers working on 100's of components on a large scale application so adding a new piece of code or making any changes may impact the existing code, so testing the code gives us confidence that we are not breaking the existing code. [Read about "Test Driven Developement" => Basically means writing test cases even before writing the code ] Test Driven Developement is a very good process as it ensures a very good quality of code but it's not preferred by companies as that makes the developement proces very very slow.
+
+2. Different Types of testing:-
+    a) Manual Testing => A person tries to do random tests on the code to see if that breaks or not.
+    b) Automated Testing => A code testing a code. Ex:- Selenium, 
+    c) End 2 End(E2E) testing => It simulates a flow where the entire flow and entire journey of a user on the app is being tested. Ex:- Cyprus. This part is being offloaded to the QA team in many cases where they use a "headless browser". Basically these processes replace the manual testing with a code.
+    d) Unit Testing => Core job of developers where they test small unites in the code.
+    e) Integration Testing => Testing the integration between the components
+
+3. Jest -> Delightful JS testing framework and React Testing Library uses jest behind the scenes. React Testing Library makes the testing in react very efficient. A convention to write test file names => <filename>.test.js
+
+Steps for testing:- 
+
+/**
+ * 
+ * Install React Testing Library.  => npm install --save-dev @testing-library/react
+ * Install Jest   => npm i -D jest
+ * Configure Jest => Create a Jest.config file => npx jest --init => Remember we use jsdom(browser-like) environment for it. Also use   "babel" instrument code for coverage.
+ * After all the configuration we can directly run our tests as "npm run test" => test command is already configured as "jest" by parcel in package.json.
+ * After Jest version 28 "jest-environment-jsdom" is no longer shipped by default, so now we need to install it separately. => npm i -D jest-environment-jsdom.
+ * After running npm run test => jest will try to find out the test cases in our entire file. Ex:- "**/__tests__/**/*.[jt]s?(x), **/?(*.)+(spec|test).[tj]s?(x)" => this means jest is looking for "__tests__" folder and in that it's looking for "spec.js/spec.ts/test.js/test.ts" type of folders.
+ * Now we create our first test file. Remember whatever files we put insie "__tests__" folder jest will consider all of them as testing files.
+ * Configure jest bable config as JS files don't understand the "import" statements or any other ES6 statements. Jest needs some Babel packages for this. Now babel will make Jest understand that there is something called as ES6 statements and helps it to understand that.
+            => npm install --save-dev babel-jest @babel/core @babel/preset-env
+ * Now create a babel.config.js and configure the below one. We can also put this code in ".babelrc" file which was originally created to remove the console.log() for the end user by writing some configs. Both babel.config.js and .babelrc are valid ways to do so.
+                module.exports = {
+                            presets: [['@babel/preset-env', {targets: {node: 'current'}}]],
+                                };
+ * Now the above code will throw an error on ".babelrc" file as that file accepts only JSON, so convert everything into "" and remove the "module.exports" part. [JSON and JS objects are not same]
+ * Wrote and ran test cases, gitignored the coverage folder.
+ * Wrote unit test cases for header and see what we can expect when we load the header. So test cases will be
+        a) See if the logo loads        b) Cart items should be 0        c) Status should be online.
+ * Add a configuration to the "presets" part in ".babelrc" file as mentioned below to make jest understand the JSX part ot JSX statements of React. Also install => npm i -D @babel/preset-react
+                        ["@babel/preset-react", {"runtime": "automatic"}]
+        To write render() inside the testing file the syntax is => const <Variable Name> = render(<Component Name />)
+    The Variable Name returns a Vitual DOM object if we log inside the console. 
+ * Create Mocks as jsdom doesn't understand a png image. Since jsdom doesn't have the redux so then we wrap the react component inside a provider(which will be imported from react-redux). In jest.config.js have a "moduleNameMapper: {}" which tells that all the .png files that we have take it from the dummy image. The format to do this is mentioned below.
+            moduleNameMapper: {
+    "\\.(png|jpg|svg)$" : "../Mocks/dummyLogo.js"  //Here we are mapping all the .png/.jpg/.svg files with the dummyLogo.js
+   },
+ * The jsdom doesn't understand Link and routing or from where the routing is comming from so we need to give it router as well. So in place of "createBrowserRouter" [because jsdom is not a Browser] we use "StaticRouter" imported from "react-router-dom/server". This router can work without browser. Also we have to import a "Provider" from react-redux and provide our store inside it for jsdom to unserstand.
+ * We need to mock our API call because jsdom doesn't understand fetch() as that is provided to us by the browser. The jsdom doesn't have network access and cannot make network calls. So for that we use "global.fetch" and a dummy function called "jest.fn()" given to us by jest. The syntax is => **More details on point no 11.
+    global.fetch = jest.fn(()=>{
+        return Promise.resolve(
+        {
+        json: ()=> {return Promise.resolve(<Pass the data that you have to mock>)}  //Like this we create our own dummy fetch to fake..
+        }                                                                   // ..the network call and attached that to a global object
+    )
+})
+        Now our code will automatically undertand what is happening inside our fetch
+ * expect(<Variable Name>).toBeInTheDocument() //This checks that Shimmer is actually there in the component or not.
+    toBeInTheDocument() comes from @testing-library/jest-dom => npm i -D @testing-library/jest-dom
+ * waitFor() => Is a function given to us by React Testing Library to wait for sometime untill I get the component or the portion on the screen loaded. Ex:-
+                await waitFor(() =>  [Make sure the corresponding test function has async written]
+                expect(screen.getByTestId("search-btn"))
+ * To Moch typing something on the search bar we fire an event[fireEvent] given to us by react-testing library.
+ * 
+ * 
+ * 
+ */
+
+ 4. The "test()" function takes in 2 arguments => a) Name of the test  b) Callback function which will have the code that the test case will execute. Every test case should have an expect() function or an expectation inside it, also called as assertion.
+        EX:- test("<Name of the test we are doing>", ()=>{
+            expect(<Write the function to be tested>).toBe(<Expected result>)
+        })
+ 5. Find the difference between JSON and JS object. Read about "jest babel config", "jsdom".
+ 6. During testing we don't run the app on the browser, we run the test on seperate environment called "jsdom". Say we are testing the "Header" component and assume jsdom to be a small machine. So in that small machine we will load the header using a render function that comes from React Testing Library. The "Coverage" folder gives us the coverage report, basically it tells us how many test cases we have written, how much code we have covered and we need to put this folder in .gitignore.
+ 7. Jsdom is a container that doesn't have any root(Like we create a root element while trying to load the component in browser) so here we use a special render() provided to us by React Testing Library. It also doesn't understand JSX so we install @babel/preset-react.
+ 8. Jsdom tries to read png images as a javascript statement and throws and error. In React testing whenever jest doesn't understand something and the testing breaks we create a "mock" out of it. In this case we will create a dummy image for us. This Dummy image will be a JS file as the jsdom understands only that.
+ 9. Here to help us jest comes into play, so in jest.config.js have a "moduleNameMapper: {}" which tells that all the .png files that we have take it from the dummy image. The format to do this is mentioned below.
+            moduleNameMapper: {
+    "\\.(png|jpg|svg)$" : "../Mocks/dummyLogo.js"  //Here we are mapping all the .png/.jpg/.svg files with the dummyLogo.js
+   },
+10. To differentiate one HTML tag of the React component with the other during the React testing we use "data-testid" for running in jsdom unlike using "id" in the case of a browser. 
+11. fetch() is provided by browser for making network calls and it returns a promise in the form of a readable stream and we convert that readable stream into json and this json is again returns us a Promise.
+12. In package.json in "scripts" part if we mention => "watch-test": "jest --watch" it creates a Hot Module Reloading(HMR) for testing so dont have to run "npm run test" repeatedly. So we need to run => npm run watch-test.

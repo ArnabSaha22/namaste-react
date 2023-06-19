@@ -21,7 +21,7 @@ const RestaurantCard = ({ resData }) => {
       <h2 className="font-bold text-2xl"> {name} </h2>
       <h4> {cuisines.join(", ")} </h4>
       <h5> {avgRating} stars</h5>
-      <h5> {costForTwo / 100} FOR TWO</h5>
+      <h5> Rs.{costForTwo / 100} FOR TWO</h5>
       <h5> {minDeliveryTime}mins ETA</h5>
       <h5> {user.name}</h5>
     </div>

@@ -20,7 +20,7 @@ export const Header = () => {
   return (
     <div className="flex justify-between bg-pink-400 ">
       <div className="logo-container">
-        <img src={logo} alt="logo" className="h-20 p-5" />
+        <img data-testid="logo" src={logo} alt="logo" className="h-20 p-5" />
       </div>
       <div className="nav-items">
         <ul className="flex py-10">
@@ -37,7 +37,9 @@ export const Header = () => {
             <Link to="/instamart">Instamart</Link>
           </li>
           <li className="px-3">
-            <Link to="/cart">Cart - {cartItems.length} items </Link>
+            <Link to="/cart" data-testid="cart">
+              Cart - {cartItems.length} items{" "}
+            </Link>
           </li>
           <h6 className="p-10 font-bold text-red-50">{user.name}</h6>
           <h6 className="p-10 font-bold text-red-50">{user.email}</h6>
