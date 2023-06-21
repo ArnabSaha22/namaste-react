@@ -15,6 +15,7 @@
 11. If we have the package.json and package-lock.json in GitHub we can regeneate our node_modules so we need to keep them.(run the command "npm install"). Never edit node_modules, package.json, package-lock.json.
 12. To ignite the app using parcel (developement built)-> npx parcel <source file name> -> Here parcel creates a local server and hosts the website. It generates a developement built of the project and it host on the local server. When it generates a developement built it puts in "dist" folder.
     here npm -> install a package on our local system and then run and npx -> just execute a package without installing. 
+    when we write npx create-react-app <App Name> => We are executing the "create-react-app" javascript package[collection of libraries form package].
 13. To bring React and ReactDOM into our app we have 2 ways -> CDN Links(not a good way) and NPM. This is because it's easier to manage the react in node_modules rather than using CDN links where we have to update latest react versions.
 14. Parcel does HMR -> Hot module replacement -> means real time update on the browser as soon as code changes are made. This is done by a file watching algorithm of parcel written in C++. It does caching(.parcel-cache file) so it  gives faster builts. It does image optimization as well. It does minification, compress and bundling of files. It does consistent hashing(Google).
 15. React is fast because it's the bundler which makes it faster.
@@ -314,3 +315,26 @@ Steps for testing:-
 10. To differentiate one HTML tag of the React component with the other during the React testing we use "data-testid" for running in jsdom unlike using "id" in the case of a browser. 
 11. fetch() is provided by browser for making network calls and it returns a promise in the form of a readable stream and we convert that readable stream into json and this json is again returns us a Promise.
 12. In package.json in "scripts" part if we mention => "watch-test": "jest --watch" it creates a Hot Module Reloading(HMR) for testing so dont have to run "npm run test" repeatedly. So we need to run => npm run watch-test.
+
+
+#####  ############# ####################### ################################# ##############################################
+
+# Namaste React Episode 14#
+
+1. Topics that were asked in machine coding rounds of interviews:-
+        a) Todo List       b) Fetch data from API   c) Forms    d) Quiz App    e) Nested Filters    f) Carousels    g) Hooks
+        h) API Call Data    i) searching, sorting   j) Infinite scroll      k) Higher Order Components      l) E-commerse website
+        m) Counter App      n) Debouncing       o) Tik Tac Toe
+2. The most crucial part of this machine coding interview is managing the time and also when the interviewer is watching us, so to be good at interviews we need to => Practice a lot(before the interview) AND Planning well(during the interview). So the first thing we need to do in the machine coding round is "To clear out all the questions before starting the code."
+\\\\\\\\\\\\\\\\\\\\\\ Requirement Clarification \\\\\\\\\\\\\\\\\\\\\\
+    a) What features we need to develop?
+    b) Tech Stack -> Tell the interviewer that we will use tailwind CSS for styling, JavaScript, Redux or Context API or something else and justify all the tech stacks that you are using. Incase the app has forms the we will use FORMIK libraries. For routing we will be using react-router-dom. Mention the bundler we are using, the testing libraries we will be using. So in short the below things:-
+            i) Styling -> Tailwind CSS
+            ii) Data Management Library -> Redux/Context API
+            iii)Forms -> Formik
+            iv)Routing -> React-router-dom
+            v)Bundler -> Parcel/Webpack
+            vi)Testing Library -> react-testing-library/jest
+        **Don't spend more than 5 mins on the above discussion**
+3. The next 5mins we need to spend on planning or making a very low level design, how we will structure our components and how our data will flow, how we will use data and ui level. Remember -> "The more planning" => "The better code"
+4. Search why reportWebVitals.js , <React.StrictMode> is used in create-react-app.
