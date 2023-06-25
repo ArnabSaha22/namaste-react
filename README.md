@@ -220,7 +220,7 @@ It means that it is sync with the store so whenever the store modifies it will a
  *          - Action Name : Reducer function(Which takes in initial state and action payload) =>{ This function won't return anything }
  *                  }
  *        Export the actions as below
- *          export const {<Action names>} : <Slice Name>.actions
+ *          export const {<Action names>} = <Slice Name>.actions
  *
  *        Export the reducers BUT as a "<Slice Name>.reducer" format (Here it will combine all of them to a single reducer)
  *
