@@ -125,7 +125,7 @@
     a) Client side routing => When we click on a page it goes to another page without making a network call, we just load a different component.
     b) Server side routing => Way by which all our pages come from the server.
 7. We can create multiple children of our Route. "React-router-dom" gives us access to "Outlet" component to create nested routes and this will be filled by the children configuration. It's a place where we an fill our children configs.
-8. "React-router-dom" gives us access to a hook called as "useParams" which reads the dynamic url and takes the "id" from the browser. The best thing about creating more and more components is that it makes the code "modular", "reusable", "cleaner", "maintainable", "testable"
+8. "React-router-dom" gives us access to a hook called as "useParams" which reads the dynamic url and takes the "id" from the browser. The best thing about creating more and more components is that it makes the code "modular", "reusable", "cleaner", "maintainable", "testable". There is also something called as "useSearchParams()" hook which is used when the id is attached with something else in browser[Ex:- youtube video id has "/watch?v=" with it so we can't use useParams hook here]. Read about => URLSearchParams.
 
 #####  ############# ####################### ################################# ##############################################
 
@@ -209,7 +209,7 @@ It means that it is sync with the store so whenever the store modifies it will a
  * Steps in configuring a redux store:-
  * Create a store => configureStore API from "@reduxjs/toolkit
  *
- * Provide the store to the app => Provider API from "react-redux" and used the key "store" and gave access of the store to the app.
+ * Provide the store to the app in App.js=> Provider API from "react-redux" and used the key "store" and gave access of the store to the app.
  *
  * created a Slice using createSlice API from "@reduxjs/toolkit
  * In create slice we need the below things in the form of an object:-
@@ -229,10 +229,12 @@ It means that it is sync with the store so whenever the store modifies it will a
  *       reducer : {
  *                   <Name> : <Slice Name>
  *                  }
+ *  
+ *   To check if the redux is working fine on our app properly or not check the "Chrome Redux Dev Tools extension"
  */
 
-11. Using useSelector if we subscribe to the entire store then everytime my store changes it will re-render the component, which is a very bad performance issue. Instead we subscribe to the "items in that particular slice of the store" for best performance.
-12. Read about => Redux documentation, thunks, middleware
+11. Using useSelector if we subscribe to the entire store then everytime my store changes it will re-render the component, which is a very bad performance issue. Instead we subscribe to the "items in that particular slice of the store" for best performance. To dispatch an action we use useDispatch hook that comes from "react-redux".
+12. Read about => Redux documentation, thunks, middleware, early return coding pattern, axios.
 
 
 #####  ############# ####################### ################################# ##############################################
@@ -338,3 +340,4 @@ Steps for testing:-
         **Don't spend more than 5 mins on the above discussion**
 3. The next 5mins we need to spend on planning or making a very low level design, how we will structure our components and how our data will flow, how we will use data and ui level. Remember -> "The more planning" => "The better code"
 4. Search why reportWebVitals.js , <React.StrictMode> is used in create-react-app.
+5. While writing a code for a list of items => do for one item => after that works fine [do console.log() to check] => Iterate that for rest of the items using map => This makes debugging easier. While using APIs if the data doesn't come the try doing an early return empty check and check first.
