@@ -326,7 +326,7 @@ Steps for testing:-
 1. Topics that were asked in machine coding rounds of interviews:-
         a) Todo List       b) Fetch data from API   c) Forms    d) Quiz App    e) Nested Filters    f) Carousels    g) Hooks
         h) API Call Data    i) searching, sorting   j) Infinite scroll      k) Higher Order Components      l) E-commerse website
-        m) Counter App      n) Debouncing       o) Tik Tac Toe
+        m) Counter App      n) Debouncing       o) Tik Tac Toe      p) N level nested comments
 2. The most crucial part of this machine coding interview is managing the time and also when the interviewer is watching us, so to be good at interviews we need to => Practice a lot(before the interview) AND Planning well(during the interview). So the first thing we need to do in the machine coding round is "To clear out all the questions before starting the code."
 \\\\\\\\\\\\\\\\\\\\\\ Requirement Clarification \\\\\\\\\\\\\\\\\\\\\\
     a) What features we need to develop?
@@ -341,3 +341,42 @@ Steps for testing:-
 3. The next 5mins we need to spend on planning or making a very low level design, how we will structure our components and how our data will flow, how we will use data and ui level. Remember -> "The more planning" => "The better code"
 4. Search why reportWebVitals.js , <React.StrictMode> is used in create-react-app.
 5. While writing a code for a list of items => do for one item => after that works fine [do console.log() to check] => Iterate that for rest of the items using map => This makes debugging easier. While using APIs if the data doesn't come the try doing an early return empty check and check first.
+6. Higher Order Component => A function that takes in a component and returns another component. Takes an existing component and modifies it a little.
+
+
+#####  ############# ####################### ################################# ##############################################
+
+# Namaste React Episode 15#
+
+1. Debouncing => In search bar when we type something very fast it skips some of the events because making an API call on each key stroke is useless. When we type slow it makes an API call on each and every key stroke. Basically if the user types very fast he doesn't need any intermediate suggestions so it's useless to call an API on each key stroke. It makes a huge difference in API calls on large applications where thousands of people are searching things every second. So for example
+---> Debouncing with 200ms means => if difference between 2 key strokes is < 200ms ==> Decline the API call, and if difference > 200ms ==> make the API call.
+2. Here when we run the debouncing using a setTimeout inside useEffect hook with a dependency, everytime the dependency updates a new timer is created, so we need to make sure to close the previous timer. Ex:-
+
+    useEffect(() => {
+    //Make an API call after every key press but if the difference between 2 keypress is less than 200ms then decline the API call
+    const timer = setTimeout(() => getSearchSuggestions(), 200);
+
+    return () => {              //Generally after everytime the "searchQuery" updates it should call the useEffect hook and run the setTimeout function, but then 
+      clearTimeout(timer);      //everytime there will be a fresh timer of 200ms generated after every change of "searchQuery". So we make sure to clear the prev.
+    };                          //timer after evert change of the "searchQuery".
+    }, [searchQuery]);
+
+    const getSearchSuggestions = async () => {
+    const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
+    const json = await data.json();
+    console.log(json[0]);
+    };
+
+    So the process goes like this ==>
+    * keypress => i
+    * render the component and triggers the reconciliation process
+    * useEffect() is called
+    * start the timer => make api call after 200ms
+
+    * keypress => ip [Here p is pressed before 200ms]
+    * destroys/unmounts the component [calls the return method of the useEffect and clears the previous 200ms timer]
+    * re-render the component and triggers the reconciliation process again
+    * useEffect() is called again
+    * New timer of 200ms is setup
+    * 
+    * If the keypress is done after 200ms the it will automatically make the API call. In every keypress the return function tries to clear the timer, but if the  next keypress is called after 200ms then the previous timer has already expired so there will be nothing to clear. Only when the keystrokes are done before 200ms then the return function will keep on clearing the preious running timers.
