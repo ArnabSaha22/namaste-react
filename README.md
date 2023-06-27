@@ -326,7 +326,7 @@ Steps for testing:-
 1. Topics that were asked in machine coding rounds of interviews:-
         a) Todo List       b) Fetch data from API   c) Forms    d) Quiz App    e) Nested Filters    f) Carousels    g) Hooks
         h) API Call Data    i) searching, sorting   j) Infinite scroll      k) Higher Order Components      l) E-commerse website
-        m) Counter App      n) Debouncing       o) Tik Tac Toe      p) N level nested comments
+        m) Counter App      n) Debouncing       o) Tik Tac Toe      p) N level nested comments      q) Promises chaining        r) Design the given layout in HTML CSS(Ex:- Wall Clock)          s) Scopes and Closures     t) Caching
 2. The most crucial part of this machine coding interview is managing the time and also when the interviewer is watching us, so to be good at interviews we need to => Practice a lot(before the interview) AND Planning well(during the interview). So the first thing we need to do in the machine coding round is "To clear out all the questions before starting the code."
 \\\\\\\\\\\\\\\\\\\\\\ Requirement Clarification \\\\\\\\\\\\\\\\\\\\\\
     a) What features we need to develop?
@@ -380,3 +380,18 @@ Steps for testing:-
     * New timer of 200ms is setup
     * 
     * If the keypress is done after 200ms the it will automatically make the API call. In every keypress the return function tries to clear the timer, but if the  next keypress is called after 200ms then the previous timer has already expired so there will be nothing to clear. Only when the keystrokes are done before 200ms then the return function will keep on clearing the preious running timers.
+
+
+#####  ############# ####################### ################################# ##############################################
+
+# Namaste React Episode 16#
+
+1. Read about -> pagination, infinite scroll, socket programming, web socket, rendering, observables, web rtc [in terms of relevance live chat >>>  infinite scroll  >>>>  pagination]
+2. There are 2 types of applications :- 
+        a) Applications which have live streaming => There is always something that keeps rapidly changing on the page, we need to fetch data again and again, also called as "near real time data".
+        b) Applications without live streaming
+Challenges of a live chat => a) To get data live    b) Constantly update the UI    c) Make sure that the page doesn't freeze even if constantly chats are coming in.
+The first problem is to get the data in the data layer and the second one is to update the UI simultaneously.
+3. There are 2 ways we can handle the live data in the applications with live streaming => 
+        a) Using Web Sockets => It's a 2 way connection established, it's like a handshake between the server and UI, so we can quickly send data from the either side, like a bi-directional live data, so now we can immediately send data from both sides without any regular intervals(data can come in anytime).        [UI <==> Server]. Ex:- Applications like Zerodha, WhatsApp, Slack, Discord [basically all time critical apps or applications where we can see timestamps]
+        b) API Polling => The data flows from server to UI after a regular interval, it's one directional. Ex:- Applications like Gmail, Crickbuzz
