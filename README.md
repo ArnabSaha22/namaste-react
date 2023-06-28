@@ -394,4 +394,14 @@ Challenges of a live chat => a) To get data live    b) Constantly update the UI 
 The first problem is to get the data in the data layer and the second one is to update the UI simultaneously.
 3. There are 2 ways we can handle the live data in the applications with live streaming => 
         a) Using Web Sockets => It's a 2 way connection established, it's like a handshake between the server and UI, so we can quickly send data from the either side, like a bi-directional live data, so now we can immediately send data from both sides without any regular intervals(data can come in anytime).        [UI <==> Server]. Ex:- Applications like Zerodha, WhatsApp, Slack, Discord [basically all time critical apps or applications where we can see timestamps]
-        b) API Polling => The data flows from server to UI after a regular interval, it's one directional. Ex:- Applications like Gmail, Crickbuzz
+        b) API Polling => The data flows from server to UI after a regular interval, it's one directional. Ex:- Applications like Gmail, Crickbuzz.
+4. useMemo => Hook increases the performance of our app. 
+                useMemo(<Function whose result is to be memoised>, <Dependencies>)
+                Here useMemo memoises the result of the function on every re-render "except" when the <Dependencies> change.
+        Example:- useMemo(getData(), [text]) => This means memoise the value of getData() on every re-render, except when the value of "text" changes.
+    useCallback is same as useMemo but the difference is it memoises the function defination between re-renders.
+5. useRef => Hook used to keep some data of our component that we don't want to re-render. We can use a local variable but and get they updated behind the scenes but doesn't get rendered. But if we use state variable that wll re-render, so here useRef avoids the re-render of the state variable. Another important point is when a component re-renders the value of local variables get refreshed to the initial value again whereas the value of state variables stay intact. 
+Now say we need to persist the value of the local variable during re-renders and don't want them to change, this is where we use useRef hook so that React keeps a track of it. Now useRef doesn't return a value, it returns an object with a current value hard coded inside it. Ex:=>
+        const ref = useRef(0)  ====> This will return ref variable like this --- ref = {current: 0}
+        To update it we can diretly write like this => ref.current = ref.current+1
+    Ref never re-renders the component.
