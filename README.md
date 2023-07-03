@@ -405,3 +405,27 @@ Now say we need to persist the value of the local variable during re-renders and
         const ref = useRef(0)  ====> This will return ref variable like this --- ref = {current: 0}
         To update it we can diretly write like this => ref.current = ref.current+1
     Ref never re-renders the component.
+
+
+#####  ############# ####################### ################################# ##############################################
+
+# Namaste React Notes#
+
+1.     Why is React called a library? Why not a framework?🤔
+-       A Library is one that can be applied to our existing code wherever we need it, whereas a Framework is a template that builds the whole software. The developer’s code is just plugged in by the framework at some places as needed.
+-       React is a JS Library, not a full-fledged Framework. It can work independently in a small portion of our page like a navbar or header without affecting the rest of the code. It works only in that portion of the page which has been defined as the root element of React.
+
+2.     The fundamental philosophy of React in web apps?😎
+-         “Efficiently manipulate the DOM using JS”
+-         “Rather, if you want to do anything on the webpage, do it using JavaScript”
+
+3.     Is create-react-app the only way to configure our project with React?
+-       Create-react-app is not the only way! React CDN is another way to inject React in our code. But it is important to note that CDN is not the best way, still we should be aware of it.
+
+4.     Significance of cross-origin attribute of script tag?💫
+-       Well, whenever we want to load some resources (JS files, css, image etc) from a server other than our origin server, we need to use this attribute.
+-       Cross-origin with a <script> element allows the browser to execute the js file without the exchange of user-credentials.
+
+5.     Why 2 separate packages – react and reactDOM?👀
+-       Because ‘react’ package gives the core React code that is needed to run React anywhere, while ‘reactDOM’ is useful for DOM operations in a web app ie. it is specific to the browser only.
+-       React does not just build web apps, but also mobile and desktop apps, so the separation of core ‘react’ from ‘reactDOM’ makes a lot of sense, since we don’t need ‘reactDOM’ in all these platforms.
