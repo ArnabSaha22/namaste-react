@@ -327,6 +327,10 @@ Steps for testing:-
         a) Todo List       b) Fetch data from API   c) Forms    d) Quiz App    e) Nested Filters    f) Carousels    g) Hooks
         h) API Call Data    i) searching, sorting   j) Infinite scroll      k) Higher Order Components      l) E-commerse website
         m) Counter App      n) Debouncing       o) Tik Tac Toe      p) N level nested comments      q) Promises chaining        r) Design the given layout in HTML CSS(Ex:- Wall Clock)          s) Scopes and Closures     t) Caching
+    For JS these topics are very very important:-
+        a) setTimeout -> calculte the output        b) Closures -> explain with an example or calculate the output
+        c) Debounce vs Throttle => Either code the output or explain the difference
+        d) "this" keyword        e) Explain the difference between Angular, React and Vue frameworks.
 2. The most crucial part of this machine coding interview is managing the time and also when the interviewer is watching us, so to be good at interviews we need to => Practice a lot(before the interview) AND Planning well(during the interview). So the first thing we need to do in the machine coding round is "To clear out all the questions before starting the code."
 \\\\\\\\\\\\\\\\\\\\\\ Requirement Clarification \\\\\\\\\\\\\\\\\\\\\\
     a) What features we need to develop?
