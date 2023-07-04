@@ -331,6 +331,7 @@ Steps for testing:-
         a) setTimeout -> calculte the output        b) Closures -> explain with an example or calculate the output
         c) Debounce vs Throttle => Either code the output or explain the difference
         d) "this" keyword        e) Explain the difference between Angular, React and Vue frameworks.
+
 2. The most crucial part of this machine coding interview is managing the time and also when the interviewer is watching us, so to be good at interviews we need to => Practice a lot(before the interview) AND Planning well(during the interview). So the first thing we need to do in the machine coding round is "To clear out all the questions before starting the code."
 \\\\\\\\\\\\\\\\\\\\\\ Requirement Clarification \\\\\\\\\\\\\\\\\\\\\\
     a) What features we need to develop?
@@ -433,3 +434,15 @@ Now say we need to persist the value of the local variable during re-renders and
 5.     Why 2 separate packages – react and reactDOM?👀
 -       Because ‘react’ package gives the core React code that is needed to run React anywhere, while ‘reactDOM’ is useful for DOM operations in a web app ie. it is specific to the browser only.
 -       React does not just build web apps, but also mobile and desktop apps, so the separation of core ‘react’ from ‘reactDOM’ makes a lot of sense, since we don’t need ‘reactDOM’ in all these platforms.
+
+6.      What is React and how is it different from other frameworks?
+        React is a library and it has it's own beliefs like mentioned below:-
+        i) Virtual DOM -> React utilizes a virtual DOM and in-memory representation of the actual browser DOM. When the state of a component changes React creates a new Virtual DOM representation and compares it with the previous one.
+        ii) View Oriented -> React is view oriented, and is primarily concerned with the view layer of the application. It provides a declarative way to build UI components and manages the rendering of those components effeciently.
+        iii)Unidirectional -> React follows a unidirectional data flow, where data flows from parent to child components. This promotes a predictble and easier to manage data flow and helps in debugging and understanding the application state.
+        iv) Component based -> React encourages component based architechture where UI are broken down into modular and reusable components, components can be composed and nested to create complex UI structures.
+
+7.      What is the purpose of React's Virtual DOM?
+8.      How does React handle updates and rendering? [React Reconciliation, Diffing Algorithm]
+9.      How does data flow and what are "props" and "state"?
+        [Props are read only and state is an internal parameter]
