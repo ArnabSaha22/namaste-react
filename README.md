@@ -443,6 +443,17 @@ Now say we need to persist the value of the local variable during re-renders and
         iv) Component based -> React encourages component based architechture where UI are broken down into modular and reusable components, components can be composed and nested to create complex UI structures.
 
 7.      What is the purpose of React's Virtual DOM?
+
 8.      How does React handle updates and rendering? [React Reconciliation, Diffing Algorithm]
-9.      How does data flow and what are "props" and "state"?
-        [Props are read only and state is an internal parameter]
+
+9.      How does data flow and what are "props" and "state"?  [Props are read only and state is an internal parameter]
+
+10.     Difference between client and server side rendering?
+
+11.     What is the use of "refs" in react?
+
+12.     What is React Fiber?
+
+13.     What are Synthetic Events in React?
+
+14.     Why were hooks introduced?
